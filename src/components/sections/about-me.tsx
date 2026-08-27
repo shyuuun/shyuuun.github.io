@@ -15,17 +15,28 @@ export function AboutMe({ id }: { id?: string }) {
       <p className="mb-4">
         Hi! I&apos;m a full stack developer based in Manila, Philippines. I
         specialize in building mobile and web apps. I&apos;m passionate about
-        clean architecture, great user interface, and shipping products that
+        clean architecture, great user interfaces, and shipping products that
         people love to use.
       </p>
 
       <p className="mb-4">
-        Currently, I&apos;m working on my own project called <a>Hoppura!</a>
+        I build scalable foundations so your product can grow without breaking.
+        By handling the technical complexity end-to-end, I help you ship faster
+        and stay focused on growing your business.
+      </p>
+      <p className="mb-4">
+        Currently, I&apos;m working on my own project called{" "}
+        <a className="font-mono underline" href="https://hoppura.com">
+          Hoppura
+        </a>
+        . It is an app where you can share your cosplays, and connect cosplayers
+        to the world.
       </p>
 
-      <p className="mb-4">
-        When I&apos;m not coding, I enjoy playing video games, watching anime,
-        and drinking coffee.
+      <p className="mb-8">
+        Outside of tech, you&apos;ll usually find me practicing the piano,
+        hanging out with friends, or diving into the TV World to defeat Shadows
+        in Persona 4.
       </p>
 
       <div className="grid grid-cols-3 text-center font-mono">
