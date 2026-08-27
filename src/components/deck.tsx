@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Children } from "react";
+import { useState, Children } from "react";
 import { motion } from "motion/react";
 
 type DeckProps = {
@@ -29,12 +28,14 @@ export default function Deck({ children }: DeckProps) {
   }
 
   return (
-    <div className="relative mx-[calc(50%-50vw)] my-4 h-[clamp(30rem,65vw,30rem)] overflow-x-clip ">
+    // adjust the h-clamp if the cards overlaps with the button
+    <div className="relative mx-[calc(50%-50vw)] my-4 h-[clamp(35rem,65vw,35rem)] overflow-x-clip">
       {cardOrder.slice(0, 3).map((cardIndex, positionIndex) => {
         const card = cards[cardIndex];
         const position = positions[positionIndex];
         const isCenter = position === "center";
-        const offset =
+
+        const xOffset =
           position === "left" ? "-108%" : position === "right" ? "12%" : "-50%";
         const rotation =
           position === "left" ? -16 : position === "right" ? 16 : 0;
@@ -44,16 +45,27 @@ export default function Deck({ children }: DeckProps) {
             key={cardIndex}
             type="button"
             aria-label={isCenter ? "Current project" : "View project"}
-            className={`absolute top-16 left-1/2 w-[min(62%,24rem)] text-left ${
+            /* 
+              transform-gpu forces layer promotion on mobile devices.
+              style={{ touchAction: "manipulation" }} removes mobile 300ms tap delays.
+            */
+            className={`absolute top-16 left-1/2 w-[min(62%,24rem)] text-left transform-gpu will-change-transform ${
               isCenter ? "z-20 cursor-default" : "z-10 cursor-pointer"
             }`}
+            style={{ touchAction: "manipulation" }}
             animate={{
-              x: offset,
+              x: xOffset,
               rotate: rotation,
               scale: isCenter ? 1 : 0.92,
             }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30,
+              restDelta: 0.01,
+            }}
             whileHover={isCenter ? { y: -8, scale: 1.04 } : { scale: 0.96 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => moveToCenter(cardIndex)}
           >
             {card}
