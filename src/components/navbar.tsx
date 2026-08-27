@@ -21,15 +21,35 @@ function ToggleButton({
   ariaLabel: string;
   children: React.ReactNode;
 }) {
+  const { play } = useSound();
   return (
     <button
       aria-label={ariaLabel}
       className="rounded p-2 transition-colors hover:bg-primary/15 hover:text-primary"
+      onMouseEnter={() => play("hover")}
       onClick={onClick}
       type="button"
     >
       {children}
     </button>
+  );
+}
+
+function SoundToggleButton() {
+  const { muted, setMuted, play } = useSound();
+
+  function toggleSound() {
+    play("click");
+    setMuted(!muted);
+  }
+
+  return (
+    <ToggleButton
+      onClick={toggleSound}
+      ariaLabel={muted ? "Turn sound on" : "Turn sound off"}
+    >
+      {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+    </ToggleButton>
   );
 }
 
@@ -63,7 +83,11 @@ function ThemeToggleButton() {
     document.documentElement.style.setProperty("--theme-y", `${clientY}px`);
     document.documentElement.style.setProperty("--theme-radius", `${radius}px`);
 
-    if (documentWithTransition.startViewTransition) {
+    const isTouchDevice = window.matchMedia(
+      "(hover: none) and (pointer: coarse)",
+    ).matches;
+
+    if (documentWithTransition.startViewTransition && !isTouchDevice) {
       documentWithTransition.startViewTransition(() => setTheme(nextTheme));
     } else {
       setTheme(nextTheme);
@@ -80,7 +104,7 @@ function ThemeToggleButton() {
   );
 }
 export default function Navbar() {
-  const { muted, setMuted, play } = useSound();
+  const { play } = useSound();
   const [visible, setVisible] = useState(true);
   const previousScrollY = useRef(0);
 
@@ -97,28 +121,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  function toggleSound() {
-    play("click");
-    setMuted(!muted);
-  }
-
   return (
     <nav
-      className={`container sticky font-mono top-4 z-10 flex items-center justify-between rounded border border-foreground/15 bg-background/90 px-4 py-3 backdrop-blur transition-transform duration-300 sm:top-6 ${visible ? "translate-y-0" : "-translate-y-[calc(100%+1.5rem)]"}`}
+      className={`container sticky font-mono top-4 z-999 flex items-center justify-between rounded border border-foreground/15 bg-background/90 px-4 py-3 backdrop-blur transition-transform duration-300 sm:top-6 ${visible ? "translate-y-0" : "-translate-y-[calc(100%+1.5rem)]"}`}
     >
       <RollingLink
-        className="hidden sm:block font-bold tracking-tight"
-        href="#about"
+        className="hidden! sm:block! font-bold tracking-tight"
+        href="/"
       >
         kokutaro.dev
       </RollingLink>
-      <a
-        className="block sm:hidden font-bold tracking-tight"
+      <RollingLink
+        className="block! sm:hidden! font-bold tracking-tight"
         href="#about"
         onClick={() => play("click")}
       >
         FV
-      </a>
+      </RollingLink>
 
       <div className="flex items-center gap-4 sm:gap-6">
         <div className="flex items-center gap-3 text-sm sm:gap-5">
@@ -131,14 +150,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-1 border-l border-foreground/15 pl-3">
           <ThemeToggleButton />
-          <button
-            aria-label={muted ? "Turn sound on" : "Turn sound off"}
-            className="rounded p-2 transition-colors hover:bg-primary/15 hover:text-primary"
-            onClick={toggleSound}
-            type="button"
-          >
-            {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-          </button>
+          <SoundToggleButton />
         </div>
       </div>
     </nav>

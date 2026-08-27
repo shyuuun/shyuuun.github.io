@@ -1,7 +1,7 @@
 "use client";
 
 import Section from "@/components/section";
-import StackIcon, { type IconName } from "tech-stack-icons";
+import Pill from "@/components/pill";
 
 type Job = {
   role: string;
@@ -55,25 +55,6 @@ const JOBS: Job[] = [
   },
 ];
 
-const TECH_ICON_NAMES: Record<string, IconName> = {
-  Flutter: "flutter",
-  PHP: "php",
-  Firebase: "firebase",
-  React: "react",
-  NextJS: "nextjs",
-  "Vue.js": "vuejs",
-  VueJS: "vuejs",
-  Docker: "docker",
-  Supabase: "supabase",
-  PostgreSQL: "postgresql",
-  Figma: "figma",
-  JavaScript: "js",
-  HTML: "html5",
-  CSS: "css3",
-  "C#": "csharp",
-  MySQL: "mysql",
-};
-
 export default function ExperienceSection({ id }: { id?: string }) {
   return (
     <Section id={id} sectionNumber={3} sectionTitle="Experience">
@@ -116,17 +97,7 @@ export default function ExperienceSection({ id }: { id?: string }) {
           <div className="flex flex-wrap gap-1.5">
             {JOBS.flatMap((job) =>
               job.tech.map((t) => (
-                <span
-                  key={`${job.role}-${t}`}
-                  className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs border border-primary/40 text-primary"
-                >
-                  <StackIcon
-                    name={TECH_ICON_NAMES[t]}
-                    className="h-4 w-4"
-                    aria-hidden="true"
-                  />
-                  {t}
-                </span>
+                <Pill key={`${job.role}-${t}`} name={t} />
               )),
             )}
           </div>

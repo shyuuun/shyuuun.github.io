@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { motion } from "motion/react";
 
 const ITEMS = [
   "creative",
@@ -18,26 +18,20 @@ const ITEMS = [
 ];
 
 export default function MarqueeSection() {
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log(latest);
-  });
-
   return (
     <div className="container mt-12 overflow-hidden border-y select-none">
       <motion.div
         className="flex gap-12"
-        animate={{ x: ["0%", "-33.333%"] }}
+        animate={{ x: ["0%", "-50%"] }}
         transition={{
           x: {
-            duration: 20,
+            duration: 10,
             repeat: Infinity,
             ease: "linear",
           },
         }}
       >
-        {[...ITEMS, ...ITEMS, ...ITEMS].map((item, i) => (
+        {[...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS].map((item, i) => (
           <div key={i} className="flex items-center gap-12 shrink-0">
             <span className="text-sm ">{item}</span>
           </div>

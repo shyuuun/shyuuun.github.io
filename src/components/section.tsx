@@ -19,12 +19,10 @@ export default function Section({
       className={`${className ?? ""} container mt-12 sm:mt-16 relative scroll-mt-24`}
     >
       {/* title will be display on the left side */}
-      <div className="hidden sm:block absolute top-0 -left-16 font-mono">
-        {sectionNumber && (
-          <p className="text-primary text-md">0{sectionNumber}</p>
-        )}
+      <div className="hidden sm:block absolute top-0 -left-28 font-mono">
+        {sectionNumber && <p className="text-primary">0{sectionNumber}</p>}
         {sectionTitle && (
-          <p className="text-xs text-gray-500">{sectionTitle.toUpperCase()}</p>
+          <p className="text-sm">{sectionTitle.toUpperCase()}</p>
         )}
       </div>
 
