@@ -1,63 +1,48 @@
-"use client";
-
-import { motion } from "motion/react";
-import Section from "@/components/section";
+import { AtSign, BriefcaseBusiness, GitBranch } from "lucide-react";
 import { EMAIL, GITHUB_PROFILE, LINKED_IN_PROFILE } from "@/constants";
+import RollingLink from "../rolling-link";
+import Section from "../section";
 
-type ContactLink = {
-	label: string;
-	href: string;
-};
-
-const LINKS: ContactLink[] = [
-	{ label: "email", href: `mailto:${EMAIL}` },
-	{ label: "github", href: GITHUB_PROFILE },
-	{ label: "linkedin", href: LINKED_IN_PROFILE },
+const CONTACT_LINKS = [
+  {
+    href: `mailto:${EMAIL}`,
+    label: EMAIL,
+    icon: AtSign,
+  },
+  {
+    href: LINKED_IN_PROFILE,
+    label: "LinkedIn",
+    icon: BriefcaseBusiness,
+  },
+  {
+    href: GITHUB_PROFILE,
+    label: "GitHub",
+    icon: GitBranch,
+  },
 ];
 
 export default function ContactSection({ id }: { id?: string }) {
-	return (
-		<div className="pb-8">
-			<Section id={id} sectionNumber={4} sectionTitle="Contact">
-				<motion.div
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: "-100px" }}
-					variants={{
-						hidden: {},
-						visible: { transition: { staggerChildren: 0.12 } },
-					}}
-				>
-					<motion.p
-						className=""
-						variants={{
-							hidden: { opacity: 0 },
-							visible: { opacity: 1 },
-						}}
-					>
-						{
-							"I'm currently open to freelance opportunities and interesting projects. Whether you have a question, a collaboration idea, or just want to say hi — feel free to reach out."
-						}
-					</motion.p>
+  return (
+    <Section id={id} sectionNumber={4} sectionTitle="Contact">
+      <p className="mb-6 max-w-xl text-xl font-mono sm:text-2xl">
+        Have a project in mind? Let&apos;s make something useful.
+      </p>
 
-					{LINKS.map((link) => (
-						<div key={link.label} className="mt-4">
-							<motion.a
-								href={link.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								variants={{
-									hidden: { opacity: 0, y: 12 },
-									visible: { opacity: 1, y: 0 },
-								}}
-								className="text-primary hover:brightness-110 transition"
-							>
-								{link.label}
-							</motion.a>
-						</div>
-					))}
-				</motion.div>
-			</Section>
-		</div>
-	);
+      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-4">
+        {CONTACT_LINKS.map(({ href, label, icon: Icon }) => (
+          <div key={href} className="inline-flex items-center gap-2">
+            <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+            <RollingLink
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noreferrer" : undefined}
+              className="font-mono text-sm text-primary"
+            >
+              {label}
+            </RollingLink>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
 }
