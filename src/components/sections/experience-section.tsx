@@ -96,9 +96,7 @@ export default function ExperienceSection({ id }: { id?: string }) {
           <p className="text-xs text-foreground/50 mb-4">Tech stack</p>
           <div className="flex flex-wrap gap-1.5">
             {JOBS.flatMap((job) =>
-              job.tech.map((t) => (
-                <Pill key={`${job.role}-${t}`} name={t} />
-              )),
+              job.tech.map((t) => <Pill key={`${job.role}-${t}`} name={t} />),
             )}
           </div>
         </div>
