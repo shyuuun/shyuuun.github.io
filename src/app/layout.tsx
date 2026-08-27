@@ -1,38 +1,93 @@
 import type { Metadata } from "next";
-import { Reddit_Mono } from "next/font/google";
+import { Inconsolata, Ubuntu } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { SoundProvider } from "@/components/providers/sound-provider";
 import "./globals.css";
+import { SITE_URL } from "@/constants";
+import MouseEffects from "@/components/mouse-effects";
 
-const redditMono = Reddit_Mono({
-	variable: "--font-reddit-mono",
-	weight: "500",
+// Inconsolata — used for everything (links, content, nav)
+const inconsolata = Inconsolata({
+  variable: "--font-inconsolata",
+  subsets: ["latin"],
+});
+
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
-	title: "kokutaro",
-	description: "Welcome to kokutaro's website",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Frederick Vigilia — Software Developer",
+    template: "%s | Frederick Vigilia",
+  },
+  description:
+    "Frederick Vigilia is a full stack developer based in Manila, Philippines, specializing in mobile and web apps with React, Next.js, and Flutter.",
+  keywords: [
+    "Frederick Vigilia",
+    "Software Developer",
+    "Full Stack Developer",
+    "React",
+    "Next.js",
+    "Flutter",
+    "Manila",
+    "Philippines",
+    "Web Developer",
+    "Mobile Developer",
+  ],
+  authors: [{ name: "Frederick Vigilia" }],
+  creator: "Frederick Vigilia",
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    title: "Frederick Vigilia — Software Developer",
+    description:
+      "Full stack developer based in Manila, Philippines. Building mobile and web apps with React, Next.js, and Flutter.",
+    siteName: "Frederick Vigilia",
+    images: [
+      { url: "/me.jpg", width: 1200, height: 630, alt: "Frederick Vigilia" },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Frederick Vigilia — Software Developer",
+    description:
+      "Full stack developer based in Manila, Philippines. Building mobile and web apps.",
+    images: ["/me.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html
-			lang="en"
-			className={`${redditMono.variable} h-full antialiased`}
-			suppressHydrationWarning
-		>
-			<body>
-				<ThemeProvider
-					attribute="data-theme"
-					defaultTheme="light"
-					enableSystem={false}
-				>
-					{children}
-				</ThemeProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html
+      lang="en"
+      className={`${inconsolata.variable} ${ubuntu.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
+      <body>
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="dark"
+          enableSystem={false}
+        >
+          <SoundProvider>
+            <MouseEffects interactionMode="particles" duration={0.3}>
+              {children}
+            </MouseEffects>
+          </SoundProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }
