@@ -11,6 +11,60 @@ type Job = {
   tech: string[];
 };
 
+type TechCategory = "Languages" | "Tools" | "Frontend" | "Backend" | "Mobile";
+
+const TECH_STACK: { category: TechCategory; items: string[] }[] = [
+  {
+    category: "Languages",
+    items: ["JavaScript", "TypeScript", "PHP", "Python", "Dart", "C#", "SQL"],
+  },
+  {
+    category: "Tools",
+    items: [
+      "Docker",
+      "Firebase",
+      "Git",
+      "Figma",
+      "Visual Studio Code",
+      "Linux",
+      "Claude",
+      "GitHub",
+      "Photoshop",
+      "opencode",
+      "zsh",
+    ],
+  },
+  {
+    category: "Frontend",
+    items: [
+      "React",
+      "NextJS",
+      "Vue.js",
+      "HTML",
+      "CSS",
+      "Bootstrap5",
+      "TailwindCSS",
+      "Zustand",
+    ],
+  },
+  {
+    category: "Backend",
+    items: [
+      "Node.js",
+      "ExpressJS",
+      "PostgreSQL",
+      "MySQL",
+      "Supabase",
+      "Firebase",
+      "Nginx",
+    ],
+  },
+  {
+    category: "Mobile",
+    items: ["Flutter"],
+  },
+];
+
 const JOBS: Job[] = [
   {
     role: "Junior Software Developer",
@@ -93,11 +147,18 @@ export default function ExperienceSection({ id }: { id?: string }) {
         </div>
 
         <div className="mt-8 border border-primary/20 p-4">
-          <p className="text-xs text-foreground/50 mb-4">Tech stack</p>
-          <div className="flex flex-wrap gap-1.5">
-            {JOBS.flatMap((job) =>
-              job.tech.map((t) => <Pill key={`${job.role}-${t}`} name={t} />),
-            )}
+          <p className="text-md text-foreground/50 mb-4">Tech stack</p>
+          <div className="space-y-4">
+            {TECH_STACK.map(({ category, items }) => (
+              <div key={category}>
+                <p className="text-xs text-foreground/50 mb-2">{category}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {items.map((t) => (
+                    <Pill key={`${category}-${t}`} name={t} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
