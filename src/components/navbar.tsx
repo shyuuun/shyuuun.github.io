@@ -7,9 +7,9 @@ import { useSound } from "./hooks/use-sound";
 import RollingLink from "./rolling-link";
 
 const links = [
-  { href: "#about", label: "About me" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About me" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 function ToggleButton({
@@ -133,7 +133,7 @@ export default function Navbar() {
       </RollingLink>
       <RollingLink
         className="block! sm:hidden! font-bold tracking-tight"
-        href="#about"
+        href="/"
         onClick={() => play("click")}
       >
         FV
