@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import NextImage from "next/image";
 
 const DITHER_INDEX: Record<string, number> = {
   bayer8: 0,
@@ -120,6 +121,8 @@ export function DitherReveal(props: DitherRevealProps) {
   const inViewRef = useRef(true);
 
   const imgUrl = imageURL(image);
+  const alt = typeof image === "object" && image ? image.alt : "";
+  const [readyUrl, setReadyUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -207,8 +210,8 @@ export function DitherReveal(props: DitherRevealProps) {
 
     let imgAspect = 1.5;
     const img = new Image();
-    img.crossOrigin = "anonymous";
     img.onload = () => {
+      setReadyUrl(imgUrl);
       if (img.naturalHeight > 0)
         imgAspect = img.naturalWidth / img.naturalHeight;
       gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -325,9 +328,28 @@ export function DitherReveal(props: DitherRevealProps) {
         ...style,
       }}
     >
+      <NextImage
+        src={imgUrl}
+        alt={alt}
+        priority
+        fill
+        sizes="100%"
+        style={{
+          objectFit: fit,
+          objectPosition: `50% ${focusY}%`,
+        }}
+      />
       <canvas
         ref={canvasRef}
-        style={{ width: "100%", height: "100%", display: "block" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          display: "block",
+          opacity: readyUrl === imgUrl ? 1 : 0,
+          transition: "opacity 0.5s ease",
+        }}
       />
     </div>
   );

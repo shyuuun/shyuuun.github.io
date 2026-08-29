@@ -76,6 +76,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        <link rel="preload" as="image" href="/me.jpg" />
+        <link rel="preload" as="image" href="/image.jpeg" />
         <ThemeProvider
           attribute="data-theme"
           defaultTheme="dark"
