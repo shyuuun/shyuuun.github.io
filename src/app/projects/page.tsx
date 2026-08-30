@@ -2,6 +2,7 @@ import Section from "@/components/section";
 
 export default function ProjectsPage() {
   return (
+    // TODO complete the projects here
     <main className="pb-16">
       <Section>
         <div className="py-16 text-center">
