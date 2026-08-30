@@ -20,11 +20,6 @@ export function AboutMe({ id }: { id?: string }) {
       </p>
 
       <p className="mb-4">
-        I build scalable foundations so your product can grow without breaking.
-        By handling the technical complexity end-to-end, I help you ship faster
-        and stay focused on growing your business.
-      </p>
-      <p className="mb-4">
         Currently, I&apos;m working on my own project called{" "}
         <a className="font-mono underline" href="https://hoppura.com">
           Hoppura

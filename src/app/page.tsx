@@ -18,7 +18,7 @@ export default function Home() {
       <Contributions />
 
       <footer className="container mt-12 border-t border-foreground/15 pt-4 text-center text-xs text-foreground/50">
-        <p>© 2026 Frederick Vigilia. Built with care.</p>
+        <p>© 2026 Frederick Vigilia.</p>
       </footer>
     </main>
   );
