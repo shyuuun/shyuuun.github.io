@@ -73,3 +73,12 @@ body {
 	color: var(--foreground);
 	font-family: var(--font-sans), ui-monospace, monospace;
 }
+
+.old-school-btns {
+	width: auto;
+	height: auto;
+	image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+}

@@ -5,6 +5,8 @@ import { SoundProvider } from "@/components/providers/sound-provider";
 import "./globals.css";
 import { SITE_URL } from "@/constants";
 import MouseEffects from "@/components/mouse-effects";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 // Inconsolata — used for everything (links, content, nav)
 const inconsolata = Inconsolata({
@@ -85,7 +87,9 @@ export default function RootLayout({
         >
           <SoundProvider>
             <MouseEffects interactionMode="particles" duration={0.3}>
+              <Navbar />
               {children}
+              <Footer />
             </MouseEffects>
           </SoundProvider>
         </ThemeProvider>

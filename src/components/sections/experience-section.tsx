@@ -105,7 +105,7 @@ const JOBS: Job[] = [
     description: [
       "Learned on how to setup servers, and collab with other developer to build / debug / maintain their systems",
     ],
-    tech: ["JavaScript", "HTML", "CSS", "C#", "MySQL"],
+    tech: ["JavaScript", "HTML", "CSS", "MySQL"],
   },
 ];
 
@@ -147,11 +147,11 @@ export default function ExperienceSection({ id }: { id?: string }) {
         </div>
 
         <div className="mt-8 border border-primary/20 p-4">
-          <p className="text-md text-foreground/50 mb-4">Tech stack</p>
+          <p className="text-md text-foreground mb-4">Tech stack</p>
           <div className="space-y-4">
             {TECH_STACK.map(({ category, items }) => (
               <div key={category}>
-                <p className="text-xs text-foreground/50 mb-2">{category}</p>
+                <p className="text-xs text-foreground mb-2">{category}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {items.map((t) => (
                     <Pill key={`${category}-${t}`} name={t} />

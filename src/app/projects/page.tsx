@@ -1,10 +1,8 @@
-import Navbar from "@/components/navbar";
 import Section from "@/components/section";
 
 export default function ProjectsPage() {
   return (
     <main className="pb-16">
-      <Navbar />
       <Section>
         <div className="py-16 text-center">
           <p className="font-mono text-primary">/projects</p>
