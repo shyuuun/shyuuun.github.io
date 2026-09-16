@@ -8,7 +8,7 @@ export function AboutMe({ id }: { id?: string }) {
         <MyImage />
         <div className="text-center">
           <h1 className="text-2xl font-bold font-mono ">Frederick Vigilia</h1>
-          <p>Software Developer | Hobbyist</p>
+          <p>Software Developer ✧ Hobbyist</p>
         </div>
       </div>
 
@@ -40,7 +40,7 @@ export function AboutMe({ id }: { id?: string }) {
           <p className="text-sm text-foreground/50">Projects</p>
         </div>
         <div className="p-4 border-t">
-          <p className="text-4xl font-bold">3+</p>
+          <p className="text-4xl font-bold">2+</p>
           <p className="text-sm text-foreground/50">Years experience</p>
         </div>
         <div className="p-4 border-l border-t">
