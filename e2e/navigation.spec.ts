@@ -61,18 +61,18 @@ test.describe("Navigation and routes", () => {
 	test("/projects loads", async ({ page }) => {
 		await page.goto("/projects");
 		await expect(page).toHaveURL(/\/projects/);
-		await expect(page.getByText("/projects")).toBeVisible();
 		await expect(
-			page.getByRole("heading", {
-				name: "More projects are under construction.",
-			}),
+			page.getByRole("heading", { name: "Projects" }),
+		).toBeVisible();
+		await expect(
+			page.getByRole("heading", { name: "Hoppura: Cosplay Community" }),
 		).toBeVisible();
 	});
 
 	test("/gear loads and lists gear cards", async ({ page }) => {
 		await page.goto("/gear");
 		await expect(
-			page.getByRole("heading", { name: "My Gear!" }),
+			page.getByRole("heading", { name: "My Gear" }),
 		).toBeVisible();
 		for (const name of [
 			"MacBook Air M1",

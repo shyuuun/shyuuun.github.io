@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Static assets are user-supplied; never lint them.
+    "public/**",
   ]),
 ]);
 

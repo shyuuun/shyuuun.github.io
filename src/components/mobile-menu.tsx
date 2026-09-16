@@ -74,6 +74,7 @@ export default function MobileMenu({
               key={link.href + idx}
               href={link.href}
               onClick={onClose}
+              className="font-mono "
             >
               {link.label}
             </RollingLink>

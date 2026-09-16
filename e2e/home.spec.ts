@@ -90,9 +90,7 @@ test.describe("Home page", () => {
 		await page.getByRole("link", { name: "More Projects" }).click();
 		await expect(page).toHaveURL(/\/projects$/);
 		await expect(
-			page.getByRole("heading", {
-				name: "More projects are under construction.",
-			}),
+			page.getByRole("heading", { name: "Projects" }),
 		).toBeVisible();
 	});
 

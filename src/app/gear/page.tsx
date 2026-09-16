@@ -42,7 +42,7 @@ export default function GearPage() {
   return (
     <main className="pb-16">
       <Section>
-        <h1 className="font-mono text-4xl font-medium mb-4">My Gear!</h1>
+        <h1 className="font-mono text-4xl font-medium mb-4">My Gear</h1>
         <p className="mb-4">
           My everyday hardware and tools I use to build, and create.
         </p>

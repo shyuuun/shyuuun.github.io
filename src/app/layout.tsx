@@ -87,7 +87,7 @@ export default function RootLayout({
           enableSystem={false}
         >
           <SoundProvider>
-            <MouseEffects interactionMode="particles" duration={0.3}>
+            <MouseEffects interactionMode="wavy" duration={0.3}>
               <Navbar />
               {children}
               <Footer />
