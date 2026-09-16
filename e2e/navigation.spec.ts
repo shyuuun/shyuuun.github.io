@@ -10,7 +10,7 @@ test.describe("Navigation and routes", () => {
 		await expect(page).toHaveURL(/#experience/);
 		await expect(page.locator("#experience")).toBeInViewport();
 
-		await page.getByRole("link", { name: "Projects" }).click();
+		await page.getByRole("link", { name: "Projects", exact: true }).click();
 		await expect(page).toHaveURL(/#projects/);
 		await expect(page.locator("#projects")).toBeInViewport();
 
