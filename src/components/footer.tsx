@@ -25,8 +25,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="container mt-12 border-t border-foreground/15 pt-4 text-center text-xs text-foreground/50">
-      <div className="flex flex-wrap justify-center  gap-4 mb-4">
+    <footer className="container border-t border-foreground/15 py-8 text-center text-xs text-foreground/50">
+      <div className="flex flex-wrap justify-center gap-4 mb-4">
         {images.map((image, index) => (
           <Image
             key={image.alt + index}

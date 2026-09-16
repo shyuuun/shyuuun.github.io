@@ -22,7 +22,7 @@ export default function Section({
       <div className="hidden sm:block absolute top-0 -left-28 font-mono">
         {sectionNumber && <p className="text-primary">0{sectionNumber}</p>}
         {sectionTitle && (
-          <p className="text-sm">{sectionTitle.toUpperCase()}</p>
+          <h1 className="text-sm">{sectionTitle.toUpperCase()}</h1>
         )}
       </div>
 
@@ -35,9 +35,9 @@ export default function Section({
           )}
           <p className="text-xs text-gray-500">{"//"}</p>
           {sectionTitle && (
-            <p className="text-xs text-gray-500">
+            <h1 className="text-xs text-gray-500">
               {sectionTitle.toUpperCase()}
-            </p>
+            </h1>
           )}
         </div>
       )}
