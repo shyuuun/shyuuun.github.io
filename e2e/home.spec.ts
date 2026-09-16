@@ -10,7 +10,7 @@ test.describe("Home page", () => {
 			page.getByRole("heading", { name: "Frederick Vigilia" }),
 		).toBeVisible();
 		await expect(
-			page.getByText("Software Developer | Hobbyist"),
+			page.getByText("Software Developer ✧ Hobbyist"),
 		).toBeVisible();
 
 		await expect(page.locator("#about")).toBeVisible();
@@ -24,7 +24,7 @@ test.describe("Home page", () => {
 		const about = page.locator("#about");
 		await expect(about.getByText("15")).toBeVisible();
 		await expect(about.getByText("Projects")).toBeVisible();
-		await expect(about.getByText("3+")).toBeVisible();
+		await expect(about.getByText("2+")).toBeVisible();
 		await expect(about.getByText("Years experience")).toBeVisible();
 		await expect(about.getByText("100+")).toBeVisible();
 		await expect(about.getByText("Coffees enjoyed")).toBeVisible();

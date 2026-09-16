@@ -1,22 +1,27 @@
 "use client";
 
-import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
+import { Menu, Moon, Sun, Volume2, VolumeX } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useSound } from "./hooks/use-sound";
+import MobileMenu from "./mobile-menu";
 import RollingLink from "./rolling-link";
 
 const links = [
-  { href: "/#about", label: "About me" },
   { href: "/#experience", label: "Experience" },
+  { href: "/#projects", label: "Projects" },
   { href: "/#contact", label: "Contact" },
+  { href: "/gear", label: "My Gear" },
+  // { href: "/posts", label: "My Posts" },
 ];
 
 function ToggleButton({
+  className,
   onClick,
   ariaLabel,
   children,
 }: {
+  className?: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   ariaLabel: string;
   children: React.ReactNode;
@@ -25,7 +30,7 @@ function ToggleButton({
   return (
     <button
       aria-label={ariaLabel}
-      className="rounded p-2 transition-colors hover:bg-primary/15 hover:text-primary"
+      className={`${className} rounded p-2 transition-colors hover:bg-primary/15 hover:text-primary`}
       onMouseEnter={() => play("hover")}
       onClick={onClick}
       type="button"
@@ -103,9 +108,26 @@ function ThemeToggleButton() {
     </ToggleButton>
   );
 }
-export default function Navbar() {
+
+function MenuButton({ onClick }: { onClick: () => void }) {
   const { play } = useSound();
+  return (
+    <ToggleButton
+      className="block sm:hidden"
+      onClick={() => {
+        play("open");
+        onClick();
+      }}
+      ariaLabel="Open menu"
+    >
+      <Menu size={16} />
+    </ToggleButton>
+  );
+}
+
+export default function Navbar() {
   const [visible, setVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const previousScrollY = useRef(0);
 
   useEffect(() => {
@@ -122,37 +144,36 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={`container sticky font-mono top-4 z-999 flex items-center justify-between rounded border border-foreground/15 bg-background/90 px-4 py-3 backdrop-blur transition-transform duration-300 sm:top-6 ${visible ? "translate-y-0" : "-translate-y-[calc(100%+1.5rem)]"}`}
-    >
-      <RollingLink
-        className="hidden! sm:block! font-bold tracking-tight"
-        href="/"
+    <>
+      <nav
+        className={`container sticky font-mono top-4 z-999 flex items-center justify-between rounded border border-foreground/15 bg-background/90 px-4 py-3 backdrop-blur transition-transform duration-300 sm:top-6 ${visible ? "translate-y-0" : "-translate-y-[calc(100%+1.5rem)]"}`}
       >
-        kokutaro.dev
-      </RollingLink>
-      <RollingLink
-        className="block! sm:hidden! font-bold tracking-tight"
-        href="/"
-        onClick={() => play("click")}
-      >
-        FV
-      </RollingLink>
+        <RollingLink className="font-bold tracking-tight" href="/">
+          kokutaro.dev
+        </RollingLink>
 
-      <div className="flex items-center gap-4 sm:gap-6">
-        <div className="flex items-center gap-3 text-sm sm:gap-5">
-          {links.map((link) => (
-            <RollingLink href={link.href} key={link.href}>
-              {link.label}
-            </RollingLink>
-          ))}
-        </div>
+        <div className="flex items-center gap-4 sm:gap-6 ">
+          <div className="hidden sm:flex items-center gap-3 text-sm sm:gap-5">
+            {links.map((link) => (
+              <RollingLink href={link.href} key={link.href}>
+                {link.label}
+              </RollingLink>
+            ))}
+          </div>
 
-        <div className="flex items-center gap-1 border-l border-foreground/15 pl-3">
-          <ThemeToggleButton />
-          <SoundToggleButton />
+          <div className="flex items-center gap-1 border-l border-foreground/15 pl-3">
+            <MenuButton onClick={() => setMenuOpen(true)} />
+            <ThemeToggleButton />
+            <SoundToggleButton />
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      <MobileMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        links={links}
+      />
+    </>
   );
 }

@@ -6,17 +6,20 @@ test.describe("Navigation and routes", () => {
 	test("nav links scroll to their sections", async ({ page }) => {
 		await page.goto("/");
 
-		await page.getByRole("link", { name: "About me" }).click();
-		await expect(page).toHaveURL(/#about/);
-		await expect(page.locator("#about")).toBeInViewport();
-
 		await page.getByRole("link", { name: "Experience" }).click();
 		await expect(page).toHaveURL(/#experience/);
 		await expect(page.locator("#experience")).toBeInViewport();
 
+		await page.getByRole("link", { name: "Projects" }).click();
+		await expect(page).toHaveURL(/#projects/);
+		await expect(page.locator("#projects")).toBeInViewport();
+
 		await page.getByRole("link", { name: "Contact" }).click();
 		await expect(page).toHaveURL(/#contact/);
 		await expect(page.locator("#contact")).toBeInViewport();
+
+		await page.getByRole("link", { name: "My Gear" }).click();
+		await expect(page).toHaveURL(/\/gear/);
 	});
 
 	test("brand logo returns to the homepage", async ({ page }) => {

@@ -25,6 +25,27 @@
 
 	--font-mono: var(--font-inconsolata);
 	--font-sans: var(--font-ubuntu);
+
+	--animate-slide-in: slide-in 0.3s ease-out;
+	--animate-fade-in: fade-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @utility container {
@@ -65,6 +86,11 @@ html {
 	::view-transition-old(root),
 	::view-transition-new(root) {
 		animation-duration: 0ms;
+	}
+
+	.animate-slide-in,
+	.animate-fade-in {
+		animation: none;
 	}
 }
 
