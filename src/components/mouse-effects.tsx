@@ -135,7 +135,7 @@ export default function MouseEffects({
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            overflow: "visible",
+            overflow: "hidden",
           }}
         >
           <AnimatePresence>
