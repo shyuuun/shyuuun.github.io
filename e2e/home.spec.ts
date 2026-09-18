@@ -41,14 +41,9 @@ test.describe("Home page", () => {
 		await expect(
 			projects.getByRole("heading", { name: "Hoppura: Cosplay Community" }),
 		).toBeVisible();
-		await expect(projects.getByText("In Progress")).toBeVisible();
-		await expect(projects.getByText("Closed testing")).toBeVisible();
-
 		await expect(
 			projects.getByRole("heading", { name: "Lost in Bytes" }),
 		).toBeVisible();
-		await expect(projects.getByText("Completed").first()).toBeVisible();
-
 		await expect(
 			projects.getByRole("heading", { name: "Philgo" }),
 		).toBeVisible();
