@@ -31,7 +31,7 @@ export default function ProjectItem({
   const isClickable = !hasSingleLink && !links?.length && !!onClick;
 
   const body = (
-    <div className="group flex flex-col sm:flex-row w-full justify-between gap-4 rounded-2xl border border-transparent px-4 py-4 transition-all duration-300 hover:border-white/25 hover:bg-card  sm:px-5">
+    <div className="group flex flex-col sm:flex-row w-full justify-between gap-4 rounded border border-transparent px-4 py-4 transition-all duration-300 hover:border-white/25 hover:bg-card  sm:px-5">
       <h2 className="flex-1 font-mono font-bold text-base transition-colors group-hover:text-primary sm:text-lg">
         {name}
       </h2>

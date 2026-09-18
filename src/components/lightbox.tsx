@@ -71,7 +71,7 @@ export default function Lightbox({
           alt={`${name} screenshot ${activeIndex + 1}`}
           width={1200}
           height={1500}
-          className="h-auto max-h-[85vh] w-auto max-w-[92vw] rounded-lg object-contain"
+          className="h-auto max-h-[85vh] w-auto max-w-[92vw] rounded object-contain"
         />
       </div>
 

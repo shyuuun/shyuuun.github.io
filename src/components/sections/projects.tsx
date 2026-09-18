@@ -9,11 +9,7 @@ export default function ProjectsSection({ id }: { id?: string }) {
   return (
     <Section id={id} sectionNumber={2} sectionTitle="Projects">
       <Deck>
-        <Card
-          src="/hoppura.jpg"
-          alt="Hoppura"
-          status={["In Progress", "Closed testing"]}
-        >
+        <Card src="/hoppura.jpg" alt="Hoppura">
           <h1 className="font-mono font-bold text-base sm:text-2xl">
             Hoppura: Cosplay Community
           </h1>
@@ -34,11 +30,7 @@ export default function ProjectsSection({ id }: { id?: string }) {
             </Link>
           </div>
         </Card>
-        <Card
-          src="/lost_in_bytes.jpg"
-          alt="Lost in Bytes"
-          status={["Completed"]}
-        >
+        <Card src="/lost_in_bytes.jpg" alt="Lost in Bytes">
           <h1 className="font-mono font-bold text-base sm:text-2xl">
             Lost in Bytes
           </h1>
@@ -59,7 +51,7 @@ export default function ProjectsSection({ id }: { id?: string }) {
             </Link>
           </div>
         </Card>
-        <Card src="/philgo.jpg" alt="Philgo" status={["Completed"]}>
+        <Card src="/philgo.jpg" alt="Philgo">
           <h1 className="font-mono font-bold text-base sm:text-2xl">Philgo</h1>
           <hr className="my-2" />
           <p className="text-sm sm:text-base">

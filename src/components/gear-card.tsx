@@ -20,10 +20,10 @@ export default function GearCard({
 
   return (
     <article
-      className="group flex flex-col rounded-2xl bg-card p-4 shadow-sm transition transform hover:scale-105"
+      className="group flex flex-col rounded bg-card p-4 shadow-sm transition transform hover:scale-105"
       onMouseEnter={() => play("hover")}
     >
-      <div className="mb-3 overflow-hidden rounded-md">
+      <div className="mb-3 overflow-hidden rounded">
         {src && (
           <Image
             src={src}

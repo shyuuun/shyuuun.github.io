@@ -21,7 +21,7 @@ export default function FeaturedProjectItem({
   return (
     <article className="flex w-full flex-col gap-2 py-4">
       <div className="flex items-start gap-4">
-        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl">
+        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded">
           <Image src={src} alt={alt} fill className="object-cover" />
         </div>
         <div className="flex-1">
