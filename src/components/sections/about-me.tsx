@@ -36,7 +36,7 @@ export function AboutMe({ id }: { id?: string }) {
 
       <div className="grid grid-cols-3 text-center font-mono">
         <div className="border-r border-t p-4">
-          <p className="text-4xl font-bold ">15</p>
+          <p className="text-4xl font-bold ">8</p>
           <p className="text-sm text-foreground/50">Projects</p>
         </div>
         <div className="p-4 border-t">

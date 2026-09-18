@@ -88,7 +88,7 @@ export default function ProjectItem({
         rel="noreferrer"
         className="block"
         onMouseEnter={() => play("hover")}
-        onClick={() => play("click")}
+        onClick={() => play("open")}
       >
         {body}
       </Link>

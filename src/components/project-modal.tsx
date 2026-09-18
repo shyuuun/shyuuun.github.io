@@ -82,8 +82,8 @@ export default function ProjectModal({
           onClose();
         }}
       />
-      <div className="absolute inset-0 overflow-y-auto px-4 py-8 sm:px-6">
-        <div className="mx-auto w-full max-w-2xl animate-fade-in rounded-2xl border border-foreground/15 bg-card p-5 shadow-lg sm:p-6">
+      <div className="absolute inset-0 overflow-hidden px-4 py-8 sm:px-6">
+        <div className="mx-auto max-h-[calc(100dvh-4rem)] w-full max-w-2xl animate-fade-in overflow-y-auto rounded border border-foreground/15 bg-card p-5 shadow-lg overscroll-contain sm:p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h2 className="font-mono text-2xl font-bold">{project.name}</h2>

@@ -37,7 +37,7 @@ const projects = [
   {
     name: "iExplore",
     description:
-      "A mobile app that helps users discover and explore new places through personalized recommendations and curated itineraries.",
+      "An mobile app that generates itinerary using Gemini AI, a travel planner, and showcase the places in Manila, Philippines",
     screenshots: [
       "/projects/iexplore-1.webp",
       "/projects/iexplore-2.webp",
