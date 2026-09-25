@@ -3,23 +3,23 @@ import Image from "next/image";
 export default function Footer() {
   const images = [
     {
-      src: "./88/1.gif",
+      src: "/88/1.gif",
       alt: "1 gif",
     },
     {
-      src: "./88/anime.gif",
+      src: "/88/anime.gif",
       alt: "anime gif",
     },
     {
-      src: "./88/archlinux.gif",
+      src: "/88/archlinux.gif",
       alt: "archlinux gif",
     },
     {
-      src: "./88/bikobatanari.gif",
+      src: "/88/bikobatanari.gif",
       alt: "bikobatanari gif",
     },
     {
-      src: "./88/gameboy.png",
+      src: "/88/gameboy.png",
       alt: "gameboy png",
     },
   ];

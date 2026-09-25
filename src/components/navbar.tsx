@@ -12,7 +12,7 @@ const links = [
   { href: "/#projects", label: "Projects" },
   { href: "/#contact", label: "Contact" },
   { href: "/gear", label: "My Gear" },
-  // { href: "/posts", label: "My Posts" },
+  { href: "/blogs", label: "Blogs" },
 ];
 
 function ToggleButton({

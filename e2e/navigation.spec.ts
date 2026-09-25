@@ -86,6 +86,22 @@ test.describe("Navigation and routes", () => {
 		}
 	});
 
+	test("/blogs loads and links to the article", async ({ page }) => {
+		await page.goto("/blogs");
+		await expect(page.getByRole("heading", { name: "Blogs" })).toBeVisible();
+
+		await page
+			.getByRole("link", { name: "Use AI, Don’t Get Used by AI" })
+			.click();
+		await expect(page).toHaveURL(/\/blogs\/use-ai-dont-get-used-by-ai$/);
+		await expect(
+			page.getByRole("heading", { name: "Use AI, Don’t Get Used by AI" }),
+		).toBeVisible();
+		await expect(
+			page.getByText("Don’t let AI do the thinking for you."),
+		).toBeVisible();
+	});
+
 	test("/sitemap.xml lists the site routes", async ({ request }) => {
 		const res = await request.get(`/sitemap.xml`);
 		expect(res.ok()).toBeTruthy();
@@ -97,6 +113,8 @@ test.describe("Navigation and routes", () => {
 			"https://kokutaro.dev/",
 			"https://kokutaro.dev/projects",
 			"https://kokutaro.dev/gear",
+			"https://kokutaro.dev/blogs",
+			"https://kokutaro.dev/blogs/use-ai-dont-get-used-by-ai",
 		]) {
 			expect(body).toContain(`<loc>${url}</loc>`);
 		}
@@ -104,7 +122,13 @@ test.describe("Navigation and routes", () => {
 });
 
 test.describe("Static export integrity", () => {
-	for (const path of ["/", "/projects", "/gear"]) {
+	for (const path of [
+		"/",
+		"/projects",
+		"/gear",
+		"/blogs",
+		"/blogs/use-ai-dont-get-used-by-ai",
+	]) {
 		test(`${path} loads without JS errors or broken same-origin requests`, async ({
 			page,
 		}) => {

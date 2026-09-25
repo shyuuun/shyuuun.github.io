@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import FeaturedProjectItem from "@/components/featured-project-item";
-import ProjectItem from "@/components/project-item";
+import Items from "@/components/items";
 import ProjectModal from "@/components/project-modal";
 import Section from "@/components/section";
 
@@ -108,19 +108,18 @@ export default function ProjectsPage() {
           googlePlayUrl="https://play.google.com/store/apps/details?id=com.kokutaro.hoppura"
         />
 
-        <div className="flex flex-col gap-4 mt-4">
-          {projects.map((project) => (
-            <ProjectItem
-              key={project.name}
-              {...project}
-              onClick={
-                project.href || project.links?.length
-                  ? undefined
-                  : () => setSelected(project)
-              }
-            />
-          ))}
-        </div>
+        <Items
+          className="mt-4 gap-4"
+          items={projects.map((project) => ({
+            ...project,
+            id: project.name,
+            target: project.href ? ("_blank" as const) : undefined,
+            onClick:
+              project.href || project.links?.length
+                ? undefined
+                : () => setSelected(project),
+          }))}
+        />
       </Section>
 
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
